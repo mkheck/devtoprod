@@ -13,7 +13,7 @@ updates:
       - "dependencies"
       - "security"
     # Specify the version update strategy
-    versioning-strategy: "auto"
+    # versioning-strategy: "auto"
 
   # Enable version updates for GitHub Actions
   - package-ecosystem: "github-actions"
