@@ -1,0 +1,27 @@
+version: 2
+updates:
+  # Enable version updates for Maven
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Limit the number of open pull requests to avoid overwhelming your project
+    open-pull-requests-limit: 10
+    target-branch: "main"
+    # Add labels to pull requests
+    labels:
+      - "dependencies"
+      - "security"
+    # Specify the version update strategy
+    versioning-strategy: "auto"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Limit the number of open pull requests
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
