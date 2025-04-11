@@ -60,6 +60,6 @@ jobs:
       uses: azure/container-apps-deploy-action@v1
       with:
         resourceGroup: ${{ env.AZURE_RESOURCE_GROUP }}
-        environment: ${{ env.APP_NAME }}env
+        containerAppEnvironment: ${{ env.APP_NAME }}env
         containerAppName: ${{ env.APP_NAME }}
         imageToDeploy: ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
