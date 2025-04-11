@@ -56,15 +56,15 @@ jobs:
         docker push ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
         docker push ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:latest
     
-    # - name: Get ACR Credentials
-    #   run: |
-    #     # Get ACR admin credentials
-    #     ACR_USERNAME=$(az acr credential show --name ${{ env.REGISTRY_NAME }} --query username -o tsv)
-    #     ACR_PASSWORD=$(az acr credential show --name ${{ env.REGISTRY_NAME }} --query "passwords[0].value" -o tsv)
+    - name: Get ACR Credentials
+      run: |
+        # Get ACR admin credentials
+        ACR_USERNAME=$(az acr credential show --name ${{ env.REGISTRY_NAME }} --query username -o tsv)
+        ACR_PASSWORD=$(az acr credential show --name ${{ env.REGISTRY_NAME }} --query "passwords[0].value" -o tsv)
         
-    #     # Set as environment variables for the next step
-    #     echo "ACR_USERNAME=$ACR_USERNAME" >> $GITHUB_ENV
-    #     echo "ACR_PASSWORD=$ACR_PASSWORD" >> $GITHUB_ENV
+        # Set as environment variables for the next step
+        echo "ACR_USERNAME=$ACR_USERNAME" >> $GITHUB_ENV
+        echo "ACR_PASSWORD=$ACR_PASSWORD" >> $GITHUB_ENV
         
     - name: Deploy to Azure Container Apps
       uses: azure/container-apps-deploy-action@v1
@@ -73,6 +73,6 @@ jobs:
         containerAppEnvironment: ${{ env.APP_NAME }}-environment
         containerAppName: ${{ env.APP_NAME }}
         imageToDeploy: ${{ env.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-        # registryUrl: ${{ env.REGISTRY_LOGIN_SERVER }}
-        # registryUsername: ${{ env.ACR_USERNAME }}
-        # registryPassword: ${{ env.ACR_PASSWORD }}
+        registryUrl: ${{ env.REGISTRY_LOGIN_SERVER }}
+        registryUsername: ${{ env.ACR_USERNAME }}
+        registryPassword: ${{ env.ACR_PASSWORD }}
