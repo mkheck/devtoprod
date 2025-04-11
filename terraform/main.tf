@@ -66,6 +66,13 @@ resource "azurerm_role_assignment" "acr_pull" {
   principal_id         = azurerm_user_assigned_identity.app_identity.principal_id
 }
 
+# Role assignment for ACR Push
+resource "azurerm_role_assignment" "acr_push" {
+  scope                = azurerm_container_registry.acr.id
+  role_definition_name = "AcrPush"
+  principal_id         = azurerm_user_assigned_identity.app_identity.principal_id
+}
+
 # Container App
 resource "azurerm_container_app" "app" {
   name                         = var.app_name

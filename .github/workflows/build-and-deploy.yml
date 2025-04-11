@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP || 'devtoprod-rg' }}
-  APP_NAME: ${{ vars.APP_NAME || 'devtoprod-app' }}
+  AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP || 'devtoprodrg' }}
+  APP_NAME: ${{ vars.APP_NAME || 'devtoprodapp' }}
   REGISTRY_NAME: ${{ vars.REGISTRY_NAME || 'devtoprodappacr' }}
   REGISTRY_LOGIN_SERVER: ${{ vars.REGISTRY_LOGIN_SERVER || format('{0}.azurecr.io', vars.REGISTRY_NAME || 'devtoprodappacr') }}
   IMAGE_NAME: devtoprod
